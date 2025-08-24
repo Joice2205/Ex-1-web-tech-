@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Movie Portal Signup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: url("https://i.redd.it/4fxxbm4opjd31.jpg") no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Updated Heading Styles */
+    h2, h4 {
+      text-align: center;
+      color: #fff;
+      font-weight: bold;
+      margin: 10px 0;
+      padding: 8px 16px;
+      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.6);
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.9), 0 0 8px rgba(255,255,255,0.7);
+    }
+
+    h2 {
+      font-size: 2em;
+      margin-top: -20px;
+    }
+
+    h4 {
+      font-size: 1.2em;
+      font-style: italic;
+    }
+
+    form {
+      width: 400px;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #aaa;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.9); /* transparent white box */
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border: 1px solid #aaa;
+      border-radius: 4px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px;
+      width: 100%;
+      background: #0066cc;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #004d99;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Now headings will always stand out -->
+  <br><h2>🎥 Watchaa – Create an Account</h2>
+  <h4>Welcome!!</h4>
+
+  <form id="signupForm" onsubmit="return validateForm()">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" placeholder="Enter username" />
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="example@mail.com" />
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" min="1" max="120" placeholder="Enter your age" />
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="At least 6 characters" />
+
+    <label for="confirm">Confirm Password:</label>
+    <input type="password" id="confirm" name="confirm" placeholder="Re-enter password" />
+
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" name="phone" placeholder="XXXXXXXXXX" pattern="[0-9]{10,15}" />
+
+
+    <label for="genre">Favorite Genre:</label>
+    <select id="genre" name="genre">
+      <option value="">--Choose--</option>
+      <option>Action</option>
+      <option>Romance</option>
+      <option>Comedy</option>
+      <option>Horror</option>
+      <option>Sci-Fi</option>
+    </select>
+
+    <label for="year">Preferred Release Year:</label>
+    <input type="number" id="year" name="year" min="1900" max="2025" />
+
+    <button type="submit">Sign Up</button>
+  </form>
+
+  <script>
+    function validateForm() {
+      const userInput = document.getElementById("username");
+      const user = userInput.value.trim();
+      if (user === "") {
+        alert("Enter username...");
+        userInput.focus();
+        return false;
+      }
+      if (user.length < 3) {
+        alert("Username must be at least 3 characters");
+        userInput.focus();
+        return false;
+      }
+
+      const emailInput = document.getElementById("email");
+      const email = emailInput.value.trim();
+      if (email === "") {
+        alert("Enter email...");
+        emailInput.focus();
+        return false;
+      }
+      if (!(email.includes("@") && email.includes("."))) {
+        alert("Email must contain '@' and '.'");
+        emailInput.focus();
+        return false;
+      }
+
+      const ageInput = document.getElementById("age");
+      const age = ageInput.value;
+      if (age === "") {
+        alert("Please enter your age");
+        ageInput.focus();
+        return false;
+      }
+      if (age < 1 || age > 120) {
+        alert("Enter a valid age between 1 and 120");
+        ageInput.focus();
+        return false;
+      }
+
+      const passInput = document.getElementById("password");
+      const pass = passInput.value;
+      if (pass === "") {
+        alert("Enter password...");
+        passInput.focus();
+        return false;
+      }
+      if (pass.length < 6) {
+        alert("Password must be at least 6 characters");
+        passInput.focus();
+        return false;
+      }
+
+      const confirmInput = document.getElementById("confirm");
+      const confirm = confirmInput.value;
+      if (confirm === "") {
+        alert("Please confirm your password");
+        confirmInput.focus();
+        return false;
+      }
+      if (confirm !== pass) {
+        alert("Passwords do not match");
+        confirmInput.focus();
+        return false;
+      }
+
+      const genreInput = document.getElementById("genre");
+      const genre = genreInput.value;
+      if (genre === "") {
+        alert("Please select a genre");
+        genreInput.focus();
+        return false;
+      }
+
+      const yearInput = document.getElementById("year");
+      const year = yearInput.value;
+      if (year === "") {
+        alert("Preferred release year is required");
+        yearInput.focus();
+        return false;
+      }
+      if (year < 1900 || year > 2025) {
+        alert("Enter a year between 1900 and 2025");
+        yearInput.focus();
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+
+</body>
+</html>
+
